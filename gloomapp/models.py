@@ -12,8 +12,8 @@ class CityEvents(models.Model):
     id = models.IntegerField(primary_key=True)
     number: int = models.PositiveSmallIntegerField()
     text: str = models.TextField()
-    optionA = models.ForeignKey("gloomhaven.OptionA", on_delete=models.CASCADE, null=True)
-    optionB = models.ForeignKey("gloomhaven.OptionB", on_delete=models.CASCADE, null=True)
+    optionA = models.ForeignKey("gloomapp.OptionA", on_delete=models.CASCADE, null=True)
+    optionB = models.ForeignKey("gloomapp.OptionB", on_delete=models.CASCADE, null=True)
     image_url = models.URLField()
     verified = models.BooleanField(default=False)
 
@@ -25,8 +25,8 @@ class RoadEvents(models.Model):
     id = models.IntegerField(primary_key=True)
     number: int = models.PositiveSmallIntegerField()
     text: str = models.TextField()
-    optionA = models.ForeignKey("gloomhaven.OptionA", on_delete=models.CASCADE, null=True)
-    optionB = models.ForeignKey("gloomhaven.OptionB", on_delete=models.CASCADE, null=True)
+    optionA = models.ForeignKey("gloomapp.OptionA", on_delete=models.CASCADE, null=True)
+    optionB = models.ForeignKey("gloomapp.OptionB", on_delete=models.CASCADE, null=True)
     image_url = models.URLField()
     verified = models.BooleanField(default=False)
 

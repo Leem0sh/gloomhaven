@@ -14,7 +14,7 @@ from pathlib import Path
 import environ
 
 ROOT_DIR = BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-# vize/
+# gloomy/
 APPS_DIR = ROOT_DIR / "vize"
 env = environ.Env()
 
@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 
-
 DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -45,9 +44,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-LOCAL_APPS = [
-    "gloomhaven"
-]
+LOCAL_APPS = ["gloomapp"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,9 +54,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+THIRD_PARTY_APPS = ["django_htmx"]
+
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 ROOT_URLCONF = "gloomhaven.urls"
 
@@ -128,3 +129,49 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": (
+                "[%(asctime)s %(thread)d] %(levelname)s [%(name)s:%(module)s - %(funcName)s:%(lineno)s]"
+                " %(message)s"
+            ),
+            "datefmt": "%d.%m.%Y %H:%M:%S",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django.db.backends": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "django.request": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "peewee": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "celery.task": {
+            "propagate": False,
+        },
+    },
+    "root": {"level": "INFO", "handlers": ["console"]},
+}

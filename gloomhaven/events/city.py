@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-from gloomhaven.events.types import EventType
-
 CITY_EVENTS = [
   {
     "id": 3,

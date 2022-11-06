@@ -2,10 +2,11 @@
 # ! python3
 
 from __future__ import annotations
+from django.db import models
 
 from typing import Any
 
 
-class EventType:
-    Road: Any
-    City: Any
+class EventTypes(models.TextChoices):
+    Road = "Road"
+    City = "City"

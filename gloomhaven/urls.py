@@ -21,4 +21,5 @@ from gloomapp import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("gloomhaven/", views.index, name="index"),
+    path("gloomhaven/middleware-tester", views.middleware_tester, name="middleware-tester"),
 ]

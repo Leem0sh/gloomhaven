@@ -15,7 +15,7 @@ import environ
 
 ROOT_DIR = BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # gloomy/
-APPS_DIR = ROOT_DIR / "vize"
+APPS_DIR = ROOT_DIR / "gloomapp"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
@@ -79,6 +79,10 @@ TEMPLATES = [
         },
     },
 ]
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [str(BASE_DIR/ "static")]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 WSGI_APPLICATION = "gloomhaven.wsgi.application"
 

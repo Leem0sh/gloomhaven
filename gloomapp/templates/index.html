@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="align-center col-10">
+        <p class="lead ml-0">Type a piece of event</p>
+        <form hx-post="{% url 'get-event' %}" hx-target='#event-list' class="d-flex align-items-center" method="POST">
+            {% csrf_token %}
+            <input type="text" name="event-text" class="form-control-sm mr-4" placeholder="Enter text" hx-post="/check-name/" hx-trigger="keyup" hx-target="#name-exist"/>
+            <input type="radio" name="event-type" class="form-control-sm mr-2" value="city">
+            <label>City</label><br>
+            <input type="radio" name="event-type" class="form-control-sm mr-2" value="road">
+            <label>Road</label><br>
+            <button hx-post='{% url "get-event" %}' hx-target='#event-list' type="submit" class="btn btn-success btn-sm">Show</button>
+        </form>
+    <hr/>
+
+    <div id="event-list">
+        {% include 'event-list.html' %}
+    </div>
+</div>
+{% endblock content %}

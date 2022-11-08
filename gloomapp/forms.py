@@ -4,10 +4,9 @@
 from __future__ import annotations
 
 
-from django import forms
 from django.forms import ModelForm
-
-from gloomapp.models import CityEvents, RoadEvents
+from django import forms
+from gloomapp.models import CityEvents, RoadEvents, Contact
 
 
 class CityEventForm(forms.Form):
@@ -35,6 +34,7 @@ class CityEventForm(forms.Form):
             ),
         }
 
+
 class RoadEventForm(forms.Form):
     class Meta:
         model = RoadEvents
@@ -58,4 +58,14 @@ class RoadEventForm(forms.Form):
                     "placeholder": "Content",
                 }
             ),
+        }
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        fields = ["name", "phone_number"]
+        model = Contact
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"}),
+            "phone_number": forms.TextInput(attrs={"class": "form-control"}),
         }

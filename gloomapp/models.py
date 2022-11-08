@@ -32,14 +32,29 @@ class RoadEvents(models.Model):
 
 
 class OptionA(models.Model):
-    type = models.CharField(max_length=16, choices=EventTypes.choices, default=EventTypes.City)
+    type = models.CharField(
+        max_length=16, choices=EventTypes.choices, default=EventTypes.City
+    )
     choice = models.TextField()
     outcome = models.TextField()
     image_url = models.URLField()
 
 
 class OptionB(models.Model):
-    type = models.CharField(max_length=16, choices=EventTypes.choices, default=EventTypes.City)
+    type = models.CharField(
+        max_length=16, choices=EventTypes.choices, default=EventTypes.City
+    )
     choice = models.TextField()
     outcome = models.TextField()
     image_url = models.URLField()
+
+
+from django.db import models
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    phone_number = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name

@@ -14,12 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from gloomapp import views
+from gloomapp.views import CityEventsList, RoadEventsList
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("gloomhaven/", views.index, name="index"),
-    path("gloomhaven/middleware-tester", views.middleware_tester, name="middleware-tester"),
+    path("city-events/", CityEventsList.as_view(), name="city-events-list"),
+    path("road-events/", RoadEventsList.as_view(), name="road-events-list"),
+    path("get-event/", views.get_event, name="get-event"),
+    path("event-list/", views.get_event, name="event-list"),
 ]

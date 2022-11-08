@@ -1,0 +1,14 @@
+{% if roadevents %}
+
+{% csrf_token %}
+<ul class="list-group col-4">
+{% for event in roadevents %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ event.text }}: {{ event.optionA }} vs {{ event.optionB }}
+            
+    </li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No Event</p>
+{% endif %}
